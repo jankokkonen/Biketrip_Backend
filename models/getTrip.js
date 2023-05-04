@@ -1,4 +1,4 @@
-// const db = require();
+const db = require('../db/database');
 
 module.exports = class Trips {
     constructor(
@@ -21,7 +21,7 @@ module.exports = class Trips {
             this.duration_sec = duration_sec;
         }
 
-        static fetchAll() {
+        static async fetchAll() {
             return db.query('SELECT * FROM trips');
         }
 }

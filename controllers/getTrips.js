@@ -4,9 +4,11 @@ const db = require('../db/database');
 
 exports.fetchAll = async (req, res, next) => {
     try {
-        const { rows } = await db.query('SELECT * FROM trips');
+        const {rows} = await tripsModel.fetchAll(req.query.limit, req.query.offset);
+        console.log(rows);
         res.status(200).json(rows);
     } catch (err) {
         console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
     }
 }
