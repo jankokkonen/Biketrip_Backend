@@ -21,7 +21,7 @@ module.exports = class Trips {
             this.duration_sec = duration_sec;
         }
 
-        static async fetchAll(limit, offset) {
+        static async fetchTrips(limit, offset) {
             const query = {
                 text: `SELECT * FROM trips LIMIT $1 OFFSET $2`,
                 values: [limit, offset]
