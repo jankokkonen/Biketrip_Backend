@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const getTripsRoutes = require('./routes/getTrips')
+const getStationsRoutes = require('./routes/getTrips')
 // const errorController = require()
 
 const app = express();
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
 // const pool = require()
 
 app.use('/get', getTripsRoutes);
+app.use('/get', getStationsRoutes);
 
 // app.use(errorController);
 
