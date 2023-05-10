@@ -2,7 +2,7 @@ const stationsModel = require('../models/getStation');
 
 const db = require('../db/database');
 
-exports.fetchTrips = async (req, res, next) => {
+exports.fetchStations = async (req, res, next) => {
     try {
         const {rows} = await stationsModel.fetchStations();
         console.log(rows);
