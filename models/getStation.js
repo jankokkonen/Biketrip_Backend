@@ -29,9 +29,10 @@ module.exports = class Stations {
             this.y = y;
         }
 
-        static async fetchStations() {
+        static async fetchStations(limit, offset) {
             const query = {
-                text: `SELECT * FROM stations`
+                text: `SELECT * FROM trips LIMIT $1 OFFSET $2`,
+                values: [limit, offset]
             };
             return db.query(query);
         }
