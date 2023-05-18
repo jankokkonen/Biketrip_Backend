@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 
 const getTripsRoutes = require('./routes/getTrips')
 const getStationsRoutes = require('./routes/getStations')
-// const errorController = require()
+const getDeparturesRoutes = require('./routes/getDepartureCount')
 
 const app = express();
-const ports = process.env.PORT || 3000;
+const ports = 3000;
 
 app.use(bodyParser.json());
 
@@ -17,11 +17,8 @@ app.use((req, res, next) => {
     next();
 })
 
-// const pool = require()
-
 app.use('/getTrips', getTripsRoutes);
 app.use('/getStations', getStationsRoutes);
-
-// app.use(errorController);
+app.use('/getDepartureCount', getDeparturesRoutes)
 
 app.listen(ports, () => console.log(`listening on port ${ports}`));
