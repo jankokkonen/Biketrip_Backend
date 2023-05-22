@@ -1,9 +1,9 @@
-const departuresModel = require('../models/getBikeDeparture');
+const returnsModel = require('../models/getBikeReturn');
 
-exports.fetchDepartures = async (req, res, next) => {
+exports.fetchReturns = async (req, res, next) => {
     try {
         const stationName = req.query.stationName; 
-        const { rows } = await departuresModel.fetchDepartures(stationName); 
+        const { rows } = await returnsModel.fetchReturns(stationName); 
         // console.log(rows);
         res.status(200).json(rows);
     } catch (err) {
