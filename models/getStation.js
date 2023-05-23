@@ -39,7 +39,7 @@ module.exports = class Stations {
 
         static fetchStationsBySearch = async (searchText) => {
             const query = {
-                text: 'SELECT * FROM stations WHERE nimi ILIKE $1',
+                text: 'SELECT * FROM stations WHERE nimi ILIKE $1 || \'%\'',
                 values: [searchText],
             };
             return db.query(query);
