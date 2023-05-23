@@ -1,10 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const getTripsRoutes = require('./routes/getTrips')
-const getStationsRoutes = require('./routes/getStations')
-const getDeparturesRoutes = require('./routes/getBikeDepartures')
-const getReturnsRoutes = require('./routes/getBikeReturns')
+const getRoutes = require('./routes/getRoutes')
 
 const app = express();
 const ports = 3000;
@@ -18,9 +15,6 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/getTrips', getTripsRoutes);
-app.use('/getStations', getStationsRoutes);
-app.use('/getBikeDepartures', getDeparturesRoutes);
-app.use('/getBikeReturns', getReturnsRoutes)
+app.use('/', getRoutes);
 
 app.listen(ports, () => console.log(`listening on port ${ports}`));
