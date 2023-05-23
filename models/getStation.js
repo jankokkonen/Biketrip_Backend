@@ -36,4 +36,12 @@ module.exports = class Stations {
             };
             return db.query(query);
         }
+
+        static fetchStationsBySearch = async (searchText) => {
+            const query = {
+                text: 'SELECT * FROM stations WHERE nimi = $1',
+                values: [searchText],
+            };
+            return db.query(query);
+        }
 }
