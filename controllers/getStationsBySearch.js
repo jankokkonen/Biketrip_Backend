@@ -2,9 +2,9 @@ const stationsModel = require('../models/getStation');
 
 exports.fetchStationsBySearch = async (req, res, next) => {
     try {
-        const searchText = req.query.searchText; 
+        const searchText = req.query.searchText.toLowerCase(); 
         const { rows } = await stationsModel.fetchStationsBySearch(searchText); 
-        // console.log(rows);
+        console.log(rows);
         res.status(200).json(rows);
     } catch (err) {
         console.error(err);
