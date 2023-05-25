@@ -22,6 +22,7 @@ module.exports = class Trips {
         }
 
         static fetchReturns = async (stationName) => {
+            console.log(stationName)
             const query = {
                 text: 'SELECT COUNT(*) FROM trips WHERE return_station_name = $1',
                 values: [stationName],
