@@ -93,11 +93,11 @@ fetchTrips(limit, offset): Hakee pyöräreittien tiedot tietokannasta rajoittaen
 
 ### getBikeReturn
 
-fetchReturns(stationName): Hakee palautuneiden pyörien lukumäärän tietyn aseman perusteella. Parametri stationName määrittää aseman nimen, jonka perusteella haetaan. Palauttaa Promise-objektin, joka liittyy hakuoperaatioon.
+fetchReturns(stationName): Hakee palautuneiden pyörien lukumäärän tietyn aseman perusteella. Parametri stationName määrittää aseman nimen, jonka perusteella haetaan. Palauttaa Promise-objektin.
 
 ### getBikeDeparture
 
-fetchDepartures(stationName): Hakee lähteneiden pyörien lukumäärän tietyn aseman perusteella. Parametri stationName määrittää aseman nimen, jonka perusteella haetaan. Palauttaa Promise-objektin, joka liittyy hakuoperaatioon.
+fetchDepartures(stationName): Hakee lähteneiden pyörien lukumäärän tietyn aseman perusteella. Parametri stationName määrittää aseman nimen, jonka perusteella haetaan. Palauttaa Promise-objektin.
 
 ## Database & config
 
