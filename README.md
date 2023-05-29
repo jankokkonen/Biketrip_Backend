@@ -10,7 +10,10 @@ Valitsin PostgreSQL BikeTrip_backend-projektin tietokantaratkaisuksi, koska se o
 
 ## Asennus
 
-Tapahtuu komentoriviltä
+Lisää .csv tiedostot backend_biketrips/data kansioon ja korjaa docker-compose.yml volumes kohdasta polku oikein, 
+jotta tiedostot saadaan Dockerkonttiin.
+
+Tiedostojen ajan tietokantaan tapahtuu komentoriviltä:
 
 Kirjaudu Dockeriin:
 
@@ -27,6 +30,12 @@ Yhdistä tietokantaan:
 Suorita SQL lauseet:
 
 \COPY stations(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM '/Biketrip_Backend/data/asemat_info.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
+
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM '/Biketrip_Backend/data/2021-05.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM '/Biketrip_Backend/data/2021-06.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM '/Biketrip_Backend/data/2021-07.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
 
 
 
