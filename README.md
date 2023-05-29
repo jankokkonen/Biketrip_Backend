@@ -10,6 +10,27 @@ Valitsin PostgreSQL BikeTrip_backend-projektin tietokantaratkaisuksi, koska se o
 
 ## Asennus
 
+Tapahtuu komentoriviltä
+
+Kirjaudu Dockeriin:
+
+docker exec -it <Dockerkontin id> bash
+
+Tämän jälkeen kirjaudu postgres:
+
+psql -U janne postgres
+
+Yhdistä tietokantaan:
+
+\c biketrips
+
+Suorita SQL lauseet:
+
+\COPY stations(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM '/Biketrip_Backend/data/asemat_info.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
+
+
+
+
 ## Routes
 
 ### getTrips

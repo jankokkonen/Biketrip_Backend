@@ -1,6 +1,7 @@
 {
-    "host": "localhost",
+    "host": "postgres",
     "user": "janne",
     "database": "biketrips",
-    "password": "salasana"
+    "password": "salasana",
+    "port": 5432
 }
