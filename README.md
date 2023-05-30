@@ -10,6 +10,38 @@ Valitsin PostgreSQL BikeTrip_backend-projektin tietokantaratkaisuksi, koska se o
 
 ## Asennus
 
+Lisää .csv tiedostot backend_biketrips/data kansioon ja korjaa docker-compose.yml volumes kohdasta polku oikein, 
+jotta tiedostot saadaan Dockerkonttiin.
+
+Yritin saada automatisoitua niin että sql kyselyt ajetaan docker-composessa, mutta en ole onnistunut siinä vielä.
+
+Tiedostojen ajaminen tietokantaan tapahtuu komentoriviltä:
+
+Kirjaudu Dockeriin postgres kontin id:llä:
+
+docker exec -it <Dockerkontin id> bash
+
+Tämän jälkeen kirjaudu postgres:
+
+psql -U janne postgres
+
+Yhdistä tietokantaan:
+
+\c biketrips
+
+Suorita SQL lauseet:
+
+\COPY stations(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM '/Biketrip_Backend/data/Helsingin_ja_Espoon_kaupunkipy%C3%B6r%C3%A4asemat_avoin.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
+
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM '/Biketrip_Backend/data/2021-05.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM '/Biketrip_Backend/data/2021-06.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM '/Biketrip_Backend/data/2021-07.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+
+
+
+
 ## Routes
 
 ### getTrips
@@ -47,13 +79,18 @@ getTrips.js-tiedosto sisältää toiminnallisuuden pyöräreittitietojen hakemis
 Reittien hakemisessa tietokannasta on käytetty parametreja haun rajoittamiseksi, 
 johtuen tietokannan suuresta tietomäärästä.
 
-Parametrit
--limit: Määrittää haettavien reittien enimmäismäärän.
--offset: Määrittää haun aloituskohteen.
+Parametrit:
+(limit, offset): Hakee kaupunkipyörämatkojen tiedot tietokannasta rajoittaen hakutulosten määrää (limit) ja määrittäen haun aloituskohteen (offset).
 
 ### getStations.js
 
 getStations.js-tiedosto sisältää toiminnallisuuden asemien tietojen hakemiseen.
+
+Asemien hakemisessa tietokannasta on käytetty parametreja haun rajoittamiseksi, 
+johtuen tietokannan suuresta tietomäärästä. 
+
+Parametrit:
+(limit, offset): Hakee kaupunkipyöräasemien tiedot tietokannasta rajoittaen hakutulosten määrää (limit) ja määrittäen haun aloituskohteen (offset).
 
 ### getBikeReturns
 
@@ -67,3 +104,36 @@ getBikeDepartures.js sisältää toiminnallisuuden pyörien asemalta lähtevien 
 
 getStationsBySearch.js käyttää searchText: Hakutekstiä, jota käytetään asemien nimen osittaiseen hakemiseen.
 Hakuteksti muunnetaan pieniksi kirjaimiksi (toLowerCase()) varmistaakseen hakemisen oikeellisuuden.
+
+## Models
+
+Mallit vastaavat tietojen käsittelystä. Metodit suorittavat SQL-kyselyitä tietokantaan ja
+palauttavat Promise-objektin, joka sisältää kyselyn tuloksen.
+
+### getStation
+
+Vastaa Helsingin kaupunkipyöräasemien tietojen käsittelystä tietokannassa.
+
+fetchStations(limit, offset): Hakee kaupunkipyöräasemien tiedot tietokannasta rajoittaen hakutulosten määrää (limit) ja määrittäen haun aloituskohteen (offset).
+
+fetchStationsBySearch(searchText): Hakee kaupunkipyöräasemat hakutekstin perusteella. Hakutekstiä verrataan aseman nimeen (käyttäen ILIKE-lauseketta, joka sallii osittaiset osumat).
+
+
+### getTrip
+
+fetchTrips(limit, offset): Hakee pyöräreittien tiedot tietokannasta rajoittaen hakutulosten määrää (limit) ja määrittäen haun aloituskohteen (offset).
+
+### getBikeReturn
+
+fetchReturns(stationName): Hakee palautuneiden pyörien lukumäärän tietyn aseman perusteella. Parametri stationName määrittää aseman nimen, jonka perusteella haetaan. Palauttaa Promise-objektin.
+
+### getBikeDeparture
+
+fetchDepartures(stationName): Hakee lähteneiden pyörien lukumäärän tietyn aseman perusteella. Parametri stationName määrittää aseman nimen, jonka perusteella haetaan. Palauttaa Promise-objektin.
+
+## Database & config
+
+Tämä moduuli luo yhteyden PostgreSQL-tietokantaan ja tarjoaa toiminnallisuuden tietokantakyselyjen suorittamiseen. Testataan myös tietokantayhteys samalla.
+Luodaan myös taulut postgres docker tietokantaan.
+
+config.json tiedosto sisältää konfiguraatiotiedot PostgreSQL-tietokantayhteyden muodostamiseksi.
