@@ -13,9 +13,9 @@ Valitsin PostgreSQL BikeTrip_backend-projektin tietokantaratkaisuksi, koska se o
 Lisää .csv tiedostot backend_biketrips/data kansioon ja korjaa docker-compose.yml volumes kohdasta polku oikein, 
 jotta tiedostot saadaan Dockerkonttiin.
 
-Yritin saada automatisoitua niin että sql kyselyt ajetaan docker-composessa, mutta en onnistunut siinä vielä.
+Yritin saada automatisoitua niin että sql kyselyt ajetaan docker-composessa, mutta en ole onnistunut siinä vielä.
 
-Tiedostojen ajan tietokantaan tapahtuu komentoriviltä:
+Tiedostojen ajaminen tietokantaan tapahtuu komentoriviltä:
 
 Kirjaudu Dockeriin postgres kontin id:llä:
 
