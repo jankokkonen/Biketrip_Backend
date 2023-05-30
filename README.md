@@ -13,9 +13,11 @@ Valitsin PostgreSQL BikeTrip_backend-projektin tietokantaratkaisuksi, koska se o
 Lisää .csv tiedostot backend_biketrips/data kansioon ja korjaa docker-compose.yml volumes kohdasta polku oikein, 
 jotta tiedostot saadaan Dockerkonttiin.
 
+Yritin saada automatisoitua niin että sql kyselyt ajetaan docker-composessa, mutta en onnistunut siinä vielä.
+
 Tiedostojen ajan tietokantaan tapahtuu komentoriviltä:
 
-Kirjaudu Dockeriin:
+Kirjaudu Dockeriin postgres kontin id:llä:
 
 docker exec -it <Dockerkontin id> bash
 
@@ -29,7 +31,7 @@ Yhdistä tietokantaan:
 
 Suorita SQL lauseet:
 
-\COPY stations(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM '/Biketrip_Backend/data/asemat_info.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
+\COPY stations(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM '/Biketrip_Backend/data/Helsingin_ja_Espoon_kaupunkipy%C3%B6r%C3%A4asemat_avoin.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
 
 \COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM '/Biketrip_Backend/data/2021-05.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
 
@@ -132,5 +134,6 @@ fetchDepartures(stationName): Hakee lähteneiden pyörien lukumäärän tietyn a
 ## Database & config
 
 Tämä moduuli luo yhteyden PostgreSQL-tietokantaan ja tarjoaa toiminnallisuuden tietokantakyselyjen suorittamiseen. Testataan myös tietokantayhteys samalla.
+Luodaan myös taulut postgres docker tietokantaan.
 
 config.json tiedosto sisältää konfiguraatiotiedot PostgreSQL-tietokantayhteyden muodostamiseksi.
