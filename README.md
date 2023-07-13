@@ -1,5 +1,7 @@
 # BikeTripBackend API - Dokumentaatio
 
+https://github.com/solita/dev-academy-2023-exercise
+
 BikeTrip_backend on toteutettu RESTful API -palveluna.
 
 BikeTrip_backend-projektissa olen valinnut Node.js:n backendin toteutuskielenä, koska se tarjoaa nopean ja suorituskykyisen ympäristön yhdessä Angularin kanssa.
