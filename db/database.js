@@ -19,7 +19,7 @@ pool.query("SELECT 1", (err, results) => {
     }
 });
 
-
+/*
 const stationsTable = 'stations';
 const tripsTable = 'trips'
 
@@ -72,34 +72,6 @@ pool.query(createTripsTableQuery, (err, res) => {
     console.log('Trips table created successfully!');
     }
 });
-
-
-
-        // if (fs.existsSync(csvFilePath)) {
-        //     const readStream = fs.createReadStream(csvFilePath);
-        //     const client = await pool.connect();
-
-        //     try {
-        //         const copyQuery = `COPY ${tableName}(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM STDIN DELIMITER ',' CSV HEADER`;
-        //         const stream = client.query(copyQuery);
-
-        //         await new Promise((resolve, reject) => {
-        //             stream.on('end', resolve);
-        //             stream.on('error', reject);
-        //             readStream.pipe(stream);
-        //         });
-
-        //         console.log('CSV imported successfully');
-        //         client.release();
-        //         pool.end();
-        //     } catch (error) {
-        //         console.error('Error importing CSV:', error);
-        //         client.release();
-        //         pool.end();
-        //     }
-        // } else {
-        //     console.error('Tiedosto ei ole olemassa:', csvFilePath);
-        //     pool.end();
-        // }
+*/
 
 module.exports = pool;

@@ -16,4 +16,4 @@ CREATE TABLE stations (
     y FLOAT
 );
 
-COPY stations(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM '/Biketrips_Backend/data/asemat_info.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
+\COPY stations(ID, station_id, nimi, namn, name, osoite, adress, kaupunki, stad, operaattori, kapasiteetti, x, y) FROM 'C:\Users\janko\OneDrive\Työpöytä\Projects\Biketrip\Csv_files\stations.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true);
