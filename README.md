@@ -4,7 +4,7 @@ https://github.com/solita/dev-academy-2023-exercise
 
 Welcome to the BikeTripBackend API documentation! This API is built in Node.js and is designed to work with a PostgreSQL database. It provides a reliable backend for managing bike-related data.
 
-###Installation
+### Installation
 To get started with the API, follow these steps:
 
 1. Clone the repository from GitHub.
