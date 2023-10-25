@@ -11,8 +11,8 @@ CREATE TABLE trips (
     duration_sec DECIMAL(10,2)
 );
 
-\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM 'C:\Users\janko\OneDrive\Työpöytä\Projects\Biketrip\Csv_files\2021-05.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM 'C:\Users\janko\OneDrive\Työpöytä\Projects\Biketrip\Csv_files\2021-05.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true, encoding 'utf8') WHERE covered_distance_m >= 10 AND duration_sec >= 10;
 
-\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM 'C:\Users\janko\OneDrive\Työpöytä\Projects\Biketrip\Csv_files\2021-06.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM 'C:\Users\janko\OneDrive\Työpöytä\Projects\Biketrip\Csv_files\2021-06.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true, encoding 'utf8') WHERE covered_distance_m >= 10 AND duration_sec >= 10;
 
-\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM 'C:\Users\janko\OneDrive\Työpöytä\Projects\Biketrip\Csv_files\2021-07.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true) WHERE covered_distance_m >= 10 AND duration_sec >= 10;
+\COPY trips(bike_departure, bike_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance_m, duration_sec) FROM 'C:\Users\janko\OneDrive\Työpöytä\Projects\Biketrip\Csv_files\2021-07.csv' WITH (FORMAT csv, DELIMITER ',', HEADER true, encoding 'utf8') WHERE covered_distance_m >= 10 AND duration_sec >= 10;
